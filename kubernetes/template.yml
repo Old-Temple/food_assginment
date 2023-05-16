@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: front
-          image: username/front:latest
+          image: oldtemple/front:v1
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: store
-          image: username/store:latest
+          image: oldtemple/store:v1
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -98,7 +98,7 @@ spec:
     spec:
       containers:
         - name: rider
-          image: username/rider:latest
+          image: oldtemple/rider:v1
           ports:
             - containerPort: 8080
           readinessProbe:
