@@ -1,0 +1,21 @@
+package food.domain;
+
+import food.domain.*;
+import food.infra.AbstractEvent;
+import java.util.*;
+import lombok.*;
+
+@Data
+@ToString
+public class StatusInquiried extends AbstractEvent {
+
+    private Long id;
+
+    public StatusInquiried(Order aggregate) {
+        super(aggregate);
+    }
+
+    public StatusInquiried() {
+        super();
+    }
+}
