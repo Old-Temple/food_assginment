@@ -32,17 +32,17 @@ public class Order {
         OrderConfirmed orderConfirmed = new OrderConfirmed(this);
         orderConfirmed.publishAfterCommit();
 
-        StatusAlert statusAlert = new StatusAlert(this);
-        statusAlert.publishAfterCommit();
+        // StatusAlert statusAlert = new StatusAlert(this);
+        // statusAlert.publishAfterCommit();
     }
 
     @PostUpdate
     public void onPostUpdate() {
-        OrderAccepted orderAccepted = new OrderAccepted(this);
-        orderAccepted.publishAfterCommit();
+        // OrderAccepted orderAccepted = new OrderAccepted(this);
+        // orderAccepted.publishAfterCommit();
 
-        OrderDenied orderDenied = new OrderDenied(this);
-        orderDenied.publishAfterCommit();
+        // OrderDenied orderDenied = new OrderDenied(this);
+        // orderDenied.publishAfterCommit();
     }
 
     public static OrderRepository repository() {
@@ -62,14 +62,14 @@ public class Order {
         statusInquiried.publishAfterCommit();
     }
 
-    public static void acceptedOrder(OrderAccepted orderAccepted) {
-        /** Example 1:  new item 
+    public static void acceptedOrder(OrderAccepted orderAcceptedP) {
+        // /** Example 1:  new item 
         Order order = new Order();
         repository().save(order);
 
-        OrderAccepted orderAccepted = new OrderAccepted(order);
-        orderAccepted.publishAfterCommit();
-        */
+        // OrderAccepted orderAccepted = new OrderAccepted(order);
+        // orderAccepted.publishAfterCommit();
+        // */
 
         /** Example 2:  finding and process
         

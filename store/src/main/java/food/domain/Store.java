@@ -29,20 +29,20 @@ public class Store {
 
     @PostPersist
     public void onPostPersist() {
-        OrderDenied orderDenied = new OrderDenied(this);
-        orderDenied.publishAfterCommit();
+        // OrderDenied orderDenied = new OrderDenied(this);
+        // orderDenied.publishAfterCommit();
 
-        OrderInsert orderInsert = new OrderInsert(this);
-        orderInsert.publishAfterCommit();
+        // OrderInsert orderInsert = new OrderInsert(this);
+        // orderInsert.publishAfterCommit();
 
-        ReturnStatus returnStatus = new ReturnStatus(this);
-        returnStatus.publishAfterCommit();
+        // ReturnStatus returnStatus = new ReturnStatus(this);
+        // returnStatus.publishAfterCommit();
     }
 
     @PostUpdate
     public void onPostUpdate() {
-        OrderCancelled orderCancelled = new OrderCancelled(this);
-        orderCancelled.publishAfterCommit();
+        // OrderCancelled orderCancelled = new OrderCancelled(this);
+        // orderCancelled.publishAfterCommit();
     }
 
     public static StoreRepository repository() {
@@ -58,23 +58,30 @@ public class Store {
     }
 
     public void startCook() {
+        this.status = "StartCook";
         CookStarted cookStarted = new CookStarted(this);
         cookStarted.publishAfterCommit();
     }
 
     public void endCook() {
+        this.status = "EndCook";
         CookEnded cookEnded = new CookEnded(this);
         cookEnded.publishAfterCommit();
     }
 
     public static void confirmedOrder(OrderConfirmed orderConfirmed) {
-        /** Example 1:  new item 
+        // /** Example 1:  new item 
         Store store = new Store();
+        store.setMenuId(orderConfirmed.getMenuId());
+        store.setMenuName(orderConfirmed.getMenuName());
+        store.setPrice(orderConfirmed.getPrice());
+        store.setStatus("Confirmed");
+        store.setUserId(orderConfirmed.getUserId());
         repository().save(store);
 
         OrderInsert orderInsert = new OrderInsert(store);
         orderInsert.publishAfterCommit();
-        */
+        // */
 
         /** Example 2:  finding and process
         
@@ -109,30 +116,6 @@ public class Store {
 
             OrderCancelled orderCancelled = new OrderCancelled(store);
             orderCancelled.publishAfterCommit();
-
-         });
-        */
-
-    }
-
-    public static void callStatus(StatusInquiried statusInquiried) {
-        /** Example 1:  new item 
-        Store store = new Store();
-        repository().save(store);
-
-        ReturnStatus returnStatus = new ReturnStatus(store);
-        returnStatus.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(statusInquiried.get???()).ifPresent(store->{
-            
-            store // do something
-            repository().save(store);
-
-            ReturnStatus returnStatus = new ReturnStatus(store);
-            returnStatus.publishAfterCommit();
 
          });
         */

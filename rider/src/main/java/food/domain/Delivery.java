@@ -27,14 +27,14 @@ public class Delivery {
 
     @PostPersist
     public void onPostPersist() {
-        InsertDelivery insertDelivery = new InsertDelivery(this);
-        insertDelivery.publishAfterCommit();
+        // InsertDelivery insertDelivery = new InsertDelivery(this);
+        // insertDelivery.publishAfterCommit();
     }
 
     @PostUpdate
     public void onPostUpdate() {
-        FoodCooked foodCooked = new FoodCooked(this);
-        foodCooked.publishAfterCommit();
+        // FoodCooked foodCooked = new FoodCooked(this);
+        // foodCooked.publishAfterCommit();
     }
 
     public static DeliveryRepository repository() {
@@ -50,23 +50,30 @@ public class Delivery {
     }
 
     public void startDelivery() {
+        this.status = "DeliveryStart";
         DeliveryStarted deliveryStarted = new DeliveryStarted(this);
         deliveryStarted.publishAfterCommit();
     }
 
     public void completeDelivery() {
+        this.status = "DeliveryComplete";
         DeliveryCompleted deliveryCompleted = new DeliveryCompleted(this);
         deliveryCompleted.publishAfterCommit();
     }
 
     public static void startedCook(CookStarted cookStarted) {
-        /** Example 1:  new item 
+        // /** Example 1:  new item 
         Delivery delivery = new Delivery();
+        delivery.setMenuId(cookStarted.getMenuId());
+        delivery.setMenuName(cookStarted.getMenuName());
+        delivery.setPrice(cookStarted.getPrice());
+        delivery.setStatus(cookStarted.getStatus());
+        delivery.setUserId(cookStarted.getUserId());
         repository().save(delivery);
 
         InsertDelivery insertDelivery = new InsertDelivery(delivery);
         insertDelivery.publishAfterCommit();
-        */
+        // */
 
         /** Example 2:  finding and process
         

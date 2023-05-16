@@ -30,11 +30,7 @@ public class PolicyHandler {
         @Payload OrderConfirmed orderConfirmed
     ) {
         OrderConfirmed event = orderConfirmed;
-        System.out.println(
-            "\n\n##### listener ConfirmedOrder : " + orderConfirmed + "\n\n"
-        );
 
-        // Sample Logic //
         Store.confirmedOrder(event);
     }
 
@@ -46,11 +42,7 @@ public class PolicyHandler {
         @Payload OrderCancelled orderCancelled
     ) {
         OrderCancelled event = orderCancelled;
-        System.out.println(
-            "\n\n##### listener CancelledOrder : " + orderCancelled + "\n\n"
-        );
 
-        // Sample Logic //
         Store.cancelledOrder(event);
     }
 
@@ -62,27 +54,7 @@ public class PolicyHandler {
         @Payload StatusInquiried statusInquiried
     ) {
         StatusInquiried event = statusInquiried;
-        System.out.println(
-            "\n\n##### listener CallStatus : " + statusInquiried + "\n\n"
-        );
 
-        // Sample Logic //
-        Store.callStatus(event);
-    }
-
-    @StreamListener(
-        value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='StatusInquiried'"
-    )
-    public void wheneverStatusInquiried_CallStatus(
-        @Payload StatusInquiried statusInquiried
-    ) {
-        StatusInquiried event = statusInquiried;
-        System.out.println(
-            "\n\n##### listener CallStatus : " + statusInquiried + "\n\n"
-        );
-
-        // Sample Logic //
         Store.callStatus(event);
     }
 }

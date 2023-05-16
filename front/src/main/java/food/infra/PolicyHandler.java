@@ -30,11 +30,7 @@ public class PolicyHandler {
         @Payload OrderAccepted orderAccepted
     ) {
         OrderAccepted event = orderAccepted;
-        System.out.println(
-            "\n\n##### listener AcceptedOrder : " + orderAccepted + "\n\n"
-        );
 
-        // Sample Logic //
         Order.acceptedOrder(event);
     }
 
@@ -46,11 +42,7 @@ public class PolicyHandler {
         @Payload OrderDenied orderDenied
     ) {
         OrderDenied event = orderDenied;
-        System.out.println(
-            "\n\n##### listener DeniedOrder : " + orderDenied + "\n\n"
-        );
 
-        // Sample Logic //
         Order.deniedOrder(event);
     }
 
@@ -62,11 +54,7 @@ public class PolicyHandler {
         @Payload ReturnStatus returnStatus
     ) {
         ReturnStatus event = returnStatus;
-        System.out.println(
-            "\n\n##### listener InquiriedStatus : " + returnStatus + "\n\n"
-        );
 
-        // Sample Logic //
         Order.inquiriedStatus(event);
     }
 }
